@@ -16,10 +16,10 @@
     "import": "./dist/index.mjs"
   },
   "dependencies": {
-    "discord-api-types": "^0.38.8"
+    "discord-api-types": "^0.38.34"
   },
   "devDependencies": {
-    "tsup": "^8.5.0",
-    "typescript": "^5.8.3"
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
   }
 }
