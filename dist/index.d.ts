@@ -1,4 +1,4 @@
-import { InteractionType, APIApplicationCommandInteractionDataOption, ApplicationCommandOptionType } from 'discord-api-types/v10';
+import { InteractionType, APIApplicationCommandInteractionDataOption, ApplicationCommandOptionType, ModalSubmitComponent, APIModalSubmissionComponent } from 'discord-api-types/v10';
 
 type ApplicationCommandInteractionTypes = InteractionType.ApplicationCommand | InteractionType.ApplicationCommandAutocomplete;
 type ExtractedOption<CommandInteractionType extends ApplicationCommandInteractionTypes, OptionType extends ApplicationCommandOptionType> = Extract<APIApplicationCommandInteractionDataOption<CommandInteractionType>, {
@@ -33,4 +33,12 @@ declare class ApplicationCommandOptions<CommandInteractionType extends Applicati
 }
 declare function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[]): AutocompleteFocusedOption;
 
-export { ApplicationCommandOptions, type AutocompleteFocusedOption, type FocusableOptionType, type SubcommandOptionType, getFocusedOption };
+interface FindModalFieldQuery<Type extends ModalSubmitComponent["type"]> {
+    type: Type;
+    customId: string;
+}
+declare function findModalField<Type extends ModalSubmitComponent["type"]>(components: APIModalSubmissionComponent[], options: FindModalFieldQuery<Type>): Extract<ModalSubmitComponent, {
+    type: Type;
+}>;
+
+export { ApplicationCommandOptions, type AutocompleteFocusedOption, type FocusableOptionType, type SubcommandOptionType, findModalField, getFocusedOption };
