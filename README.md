@@ -1,11 +1,11 @@
-# discord-command-options
-Standalone type-safe application command option parser
+# discord-data-resolvers
+Standalone type-safe interaction data parsing utilities
 
 ## Usage
 
 ```js
 import { ApplicationCommandOptionType } from "discord-api-types/v10";
-import { ApplicationCommandOptions } from "discord-command-options";
+import { ApplicationCommandOptions } from "discord-data-resolvers";
 
 // interaction: APIChatInputApplicationCommandInteraction
 const options = new ApplicationCommandOptions(interaction.data.options);
