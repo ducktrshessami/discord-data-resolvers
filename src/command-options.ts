@@ -14,6 +14,10 @@ interface RequiredOption<Required extends boolean = boolean> {
     required: Required;
 }
 
+export function isFocusedOption(option: APIApplicationCommandInteractionDataOption): option is AutocompleteFocusedOption {
+    return "focused" in option && !!option.focused;
+}
+
 export class ApplicationCommandOptions<CommandInteractionType extends ApplicationCommandInteractionTypes> {
     private readonly _options: Map<string, APIApplicationCommandInteractionDataOption<CommandInteractionType>>;
     private _subcommand: string | null;
@@ -26,7 +30,7 @@ export class ApplicationCommandOptions<CommandInteractionType extends Applicatio
                 case option.type === ApplicationCommandOptionType.Subcommand: this._subcommand = option.name; break;
                 case option.type === ApplicationCommandOptionType.SubcommandGroup: this._group = option.name; break;
                 default:
-                    if ("focused" in option && option.focused) {
+                    if (isFocusedOption(option)) {
                         this._focused = option.name;
                     }
                     this._options.set(option.name, option);
@@ -75,10 +79,29 @@ export class ApplicationCommandOptions<CommandInteractionType extends Applicatio
     }
 }
 
+function findOption<T extends APIApplicationCommandInteractionDataOption>(options: APIApplicationCommandInteractionDataOption[] | undefined, test: (option: APIApplicationCommandInteractionDataOption) => option is T): T | null;
+function findOption(options: APIApplicationCommandInteractionDataOption[] | undefined, test: (option: APIApplicationCommandInteractionDataOption) => boolean): APIApplicationCommandInteractionDataOption | null;
+function findOption(options: APIApplicationCommandInteractionDataOption[] | undefined, test: (option: APIApplicationCommandInteractionDataOption) => boolean): APIApplicationCommandInteractionDataOption | null {
+    if (options) {
+        for (const option of options) {
+            if (test(option)) {
+                return option;
+            }
+            if ("options" in option) {
+                const found = findOption(option.options, test);
+                if (found) {
+                    return found;
+                }
+            }
+        }
+    }
+    return null;
+}
+
 export function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[]): AutocompleteFocusedOption {
-    const focused = options.find(option => "focused" in option && option.focused);
+    const focused = findOption(options, isFocusedOption);
     if (!focused) {
         throw new ApplicationCommandOptionResolutionError("Unabled to find focused option");
     }
-    return <AutocompleteFocusedOption>focused;
+    return focused;
 }
