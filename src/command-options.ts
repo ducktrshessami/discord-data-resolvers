@@ -14,7 +14,7 @@ interface RequiredOption<Required extends boolean = boolean> {
     required: Required;
 }
 
-export function isFocusedOption(option: APIApplicationCommandInteractionDataOption): option is AutocompleteFocusedOption {
+function isFocusedOption(option: APIApplicationCommandInteractionDataOption): option is AutocompleteFocusedOption {
     return "focused" in option && !!option.focused;
 }
 
