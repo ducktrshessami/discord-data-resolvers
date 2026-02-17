@@ -18,7 +18,6 @@ interface BaseGetOptionQuery<OptionType extends ApplicationCommandOptionType> {
 interface RequiredOption<Required extends boolean = boolean> {
     required: Required;
 }
-declare function isFocusedOption(option: APIApplicationCommandInteractionDataOption): option is AutocompleteFocusedOption;
 declare class ApplicationCommandOptions<CommandInteractionType extends ApplicationCommandInteractionTypes> {
     private readonly _options;
     private _subcommand;
@@ -44,4 +43,4 @@ declare function findModalField<Type extends ModalSubmitComponent["type"]>(compo
     type: Type;
 }>;
 
-export { ApplicationCommandOptions, type AutocompleteFocusedOption, type FocusableOptionType, type SubcommandOptionType, findModalField, getFocusedOption, getGroup, getSubcommand, isFocusedOption };
+export { ApplicationCommandOptions, type AutocompleteFocusedOption, type FocusableOptionType, type SubcommandOptionType, findModalField, getFocusedOption, getGroup, getSubcommand };
