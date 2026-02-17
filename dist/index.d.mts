@@ -32,7 +32,9 @@ declare class ApplicationCommandOptions<CommandInteractionType extends Applicati
     get group(): string | null;
     getFocused(): AutocompleteFocusedOption;
 }
-declare function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[]): AutocompleteFocusedOption;
+declare function getSubcommand(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommand>[] | undefined): string | null;
+declare function getGroup(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommand>[] | undefined): string | null;
+declare function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined): AutocompleteFocusedOption;
 
 interface FindModalFieldQuery<Type extends ModalSubmitComponent["type"]> {
     type: Type;
@@ -42,4 +44,4 @@ declare function findModalField<Type extends ModalSubmitComponent["type"]>(compo
     type: Type;
 }>;
 
-export { ApplicationCommandOptions, type AutocompleteFocusedOption, type FocusableOptionType, type SubcommandOptionType, findModalField, getFocusedOption, isFocusedOption };
+export { ApplicationCommandOptions, type AutocompleteFocusedOption, type FocusableOptionType, type SubcommandOptionType, findModalField, getFocusedOption, getGroup, getSubcommand, isFocusedOption };
