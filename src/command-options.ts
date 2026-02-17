@@ -1,5 +1,6 @@
 import { APIApplicationCommandInteractionDataOption, ApplicationCommandOptionType, InteractionType } from "discord-api-types/v10";
 import { ApplicationCommandOptionResolutionError } from "./error";
+import { RequiredOption } from "./util";
 
 type ApplicationCommandInteractionTypes = InteractionType.ApplicationCommand | InteractionType.ApplicationCommandAutocomplete;
 type ExtractedOption<CommandInteractionType extends ApplicationCommandInteractionTypes, OptionType extends ApplicationCommandOptionType> = Extract<APIApplicationCommandInteractionDataOption<CommandInteractionType>, { type: OptionType; }>;
@@ -9,9 +10,6 @@ export type AutocompleteFocusedOption<OptionType extends FocusableOptionType = F
 interface BaseGetOptionQuery<OptionType extends ApplicationCommandOptionType> {
     name: string;
     type: OptionType;
-}
-interface RequiredOption<Required extends boolean = boolean> {
-    required: Required;
 }
 
 function isFocusedOption(option: APIApplicationCommandInteractionDataOption): option is AutocompleteFocusedOption {
