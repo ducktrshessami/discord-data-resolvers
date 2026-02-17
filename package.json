@@ -16,7 +16,7 @@
         "import": "./dist/index.mjs"
     },
     "dependencies": {
-        "discord-api-types": "^0.38.34"
+        "discord-api-types": "^0.38.39"
     },
     "devDependencies": {
         "tsup": "^8.5.1",
