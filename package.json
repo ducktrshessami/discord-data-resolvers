@@ -1,25 +1,25 @@
 {
-  "name": "discord-command-options",
-  "version": "0.2.0",
-  "description": "Standalone type-safe application command option parser",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "repository": "git@github.com:ducktrshessami/discord-command-options.git",
-  "author": "ducktrshessami",
-  "license": "MIT",
-  "scripts": {
-    "build": "tsup"
-  },
-  "exports": {
-    "types": "./dist/index.d.ts",
-    "require": "./dist/index.js",
-    "import": "./dist/index.mjs"
-  },
-  "dependencies": {
-    "discord-api-types": "^0.38.34"
-  },
-  "devDependencies": {
-    "tsup": "^8.5.1",
-    "typescript": "^5.9.3"
-  }
+    "name": "discord-data-resolvers",
+    "version": "0.2.0",
+    "description": "Standalone type-safe interaction data parsing utilities",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "repository": "git@github.com:ducktrshessami/discord-data-resolvers.git",
+    "author": "ducktrshessami",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsup"
+    },
+    "exports": {
+        "types": "./dist/index.d.ts",
+        "require": "./dist/index.js",
+        "import": "./dist/index.mjs"
+    },
+    "dependencies": {
+        "discord-api-types": "^0.38.39"
+    },
+    "devDependencies": {
+        "tsup": "^8.5.1",
+        "typescript": "^5.9.3"
+    }
 }

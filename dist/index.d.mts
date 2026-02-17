@@ -1,4 +1,4 @@
-import { ApplicationCommandOptionType, APIApplicationCommandInteractionDataOption, InteractionType } from 'discord-api-types/v10';
+import { InteractionType, APIApplicationCommandInteractionDataOption, ApplicationCommandOptionType } from 'discord-api-types/v10';
 
 type ApplicationCommandInteractionTypes = InteractionType.ApplicationCommand | InteractionType.ApplicationCommandAutocomplete;
 type ExtractedOption<CommandInteractionType extends ApplicationCommandInteractionTypes, OptionType extends ApplicationCommandOptionType> = Extract<APIApplicationCommandInteractionDataOption<CommandInteractionType>, {
