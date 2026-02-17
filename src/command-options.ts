@@ -98,7 +98,7 @@ function findOption(options: APIApplicationCommandInteractionDataOption[] | unde
     return null;
 }
 
-export function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[]): AutocompleteFocusedOption {
+export function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined): AutocompleteFocusedOption {
     const focused = findOption(options, isFocusedOption);
     if (!focused) {
         throw new ApplicationCommandOptionResolutionError("Unabled to find focused option");
