@@ -8,7 +8,9 @@
     "author": "ducktrshessami",
     "license": "MIT",
     "scripts": {
-        "build": "tsup"
+        "build": "tsup",
+        "pretest": "yarn build && tsc --project tsconfig.test.json",
+        "test": "vitest"
     },
     "exports": {
         "types": "./dist/index.d.ts",
@@ -20,6 +22,7 @@
     },
     "devDependencies": {
         "tsup": "^8.5.1",
-        "typescript": "^5.9.3"
+        "typescript": "^5.9.3",
+        "vitest": "^4.0.18"
     }
 }
