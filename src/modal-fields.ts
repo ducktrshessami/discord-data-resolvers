@@ -34,7 +34,7 @@ export class ModalSubmitFields {
             throw new ModalFieldResolutionError(`Unable to find required field: ${query.customId}`);
         }
         if (field && field.type !== query.type) {
-            throw new ModalFieldResolutionError(`Expected field type ${query.type}. Received: ${field.type}`);
+            throw new ModalFieldResolutionError(`Expected field type ${ComponentType[query.type]}. Received: ${ComponentType[field.type]}`);
         }
         return <ExtractedField<FieldType> | null>field;
     }
