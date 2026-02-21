@@ -52,8 +52,7 @@ describe("ApplicationCommandOptions", function () {
         const options = new lib.ApplicationCommandOptions(data);
         expect(() => options.get({
             type: ApplicationCommandOptionType.String,
-            name: "bool",
-            required: true
+            name: "bool"
         })).toThrowError("Expected option type String. Received: Boolean");
     });
 
