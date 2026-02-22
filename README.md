@@ -4,8 +4,8 @@ Standalone type-safe interaction data parsing utilities
 ## Usage
 
 ```js
-import { ApplicationCommandOptionType } from "discord-api-types/v10";
-import { ApplicationCommandOptions } from "discord-data-resolvers";
+import { ApplicationCommandOptionType, ComponentType } from "discord-api-types/v10";
+import { ApplicationCommandOptions, ModalSubmitFields } from "discord-data-resolvers";
 
 // interaction: APIChatInputApplicationCommandInteraction
 const options = new ApplicationCommandOptions(interaction.data.options);
@@ -20,4 +20,16 @@ const bar = options.get({
     name: "bar",
     required: true
 }); // APIApplicationCommandInteractionDataIntegerOption
+
+// interaction: APIModalSubmitInteraction
+const fields = new ModalSubmitFields(interaction.data.components);
+const foo = fields.get({
+    type: ComponentType.TextInput,
+    customId: "foo"
+}); // APIModalSubmitTextInputComponent | null
+const bar = fields.get({
+    type: ComponentType.StringSelect,
+    customId: "bar",
+    required: true
+}); // APIModalSubmitStringSelectComponent
 ```
