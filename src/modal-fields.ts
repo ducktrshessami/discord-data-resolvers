@@ -26,8 +26,8 @@ export class ModalSubmitFields {
         }
     }
 
-    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & RequiredOption<false>): ExtractedField<FieldType> | null;
-    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & Partial<RequiredOption>): ExtractedField<FieldType>;
+    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & Partial<RequiredOption<true>>): ExtractedField<FieldType>;
+    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & RequiredOption): ExtractedField<FieldType> | null;
     get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & Partial<RequiredOption>): ExtractedField<FieldType> | null {
         const field = this._fields.get(query.customId) ?? null;
         if ((query.required ?? true) && !field) {

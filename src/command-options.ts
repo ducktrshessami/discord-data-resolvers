@@ -135,8 +135,8 @@ export function getGroup(options: APIApplicationCommandInteractionDataOption[] |
     return group?.name ?? null;
 }
 
-export function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required: false): AutocompleteFocusedOption | null;
-export function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required?: boolean): AutocompleteFocusedOption;
+export function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required?: true): AutocompleteFocusedOption;
+export function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required: boolean): AutocompleteFocusedOption | null;
 export function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required: boolean = true): AutocompleteFocusedOption | null {
     return findOption(options, isFocusedOption, required ? "Unabled to find focused option" : undefined);
 }
