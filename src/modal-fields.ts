@@ -26,11 +26,11 @@ export class ModalSubmitFields {
         }
     }
 
-    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & RequiredOption<true>): ExtractedField<FieldType>;
-    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & Partial<RequiredOption>): ExtractedField<FieldType> | null;
+    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & RequiredOption<false>): ExtractedField<FieldType> | null;
+    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & Partial<RequiredOption>): ExtractedField<FieldType>;
     get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & Partial<RequiredOption>): ExtractedField<FieldType> | null {
         const field = this._fields.get(query.customId) ?? null;
-        if (query.required && !field) {
+        if ((query.required ?? true) && !field) {
             throw new ModalFieldResolutionError(`Unable to find required field: ${query.customId}`);
         }
         if (field && field.type !== query.type) {
