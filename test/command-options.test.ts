@@ -33,6 +33,10 @@ describe("ApplicationCommandOptions", function () {
             name: "bool",
             required: true
         })).toEqual(bool);
+    });
+
+    it("should default required to false", function () {
+        const options = new lib.ApplicationCommandOptions(data);
         expect(options.get({
             type: ApplicationCommandOptionType.Boolean,
             name: "missing"
