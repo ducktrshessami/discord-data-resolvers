@@ -36,8 +36,8 @@ declare function getSubcommand(options: APIApplicationCommandInteractionDataOpti
 declare function getSubcommand(options: APIApplicationCommandInteractionDataOption[] | undefined, required?: boolean): string | null;
 declare function getGroup(options: APIApplicationCommandInteractionDataOption[] | undefined, required: true): string;
 declare function getGroup(options: APIApplicationCommandInteractionDataOption[] | undefined, required?: boolean): string | null;
-declare function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required: false): AutocompleteFocusedOption | null;
-declare function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required?: boolean): AutocompleteFocusedOption;
+declare function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required?: true): AutocompleteFocusedOption;
+declare function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required: boolean): AutocompleteFocusedOption | null;
 
 type ModalSubmitFieldType = ModalSubmitComponent["type"];
 type ExtractedField<FieldType extends ModalSubmitFieldType> = Extract<ModalSubmitComponent, {
@@ -50,8 +50,8 @@ interface BaseGetFieldQuery<FieldType extends ModalSubmitFieldType> {
 declare class ModalSubmitFields {
     private readonly _fields;
     constructor(components: APIModalSubmissionComponent[]);
-    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & RequiredOption<false>): ExtractedField<FieldType> | null;
-    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & Partial<RequiredOption>): ExtractedField<FieldType>;
+    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & Partial<RequiredOption<true>>): ExtractedField<FieldType>;
+    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & RequiredOption): ExtractedField<FieldType> | null;
 }
 
 export { ApplicationCommandOptions, type AutocompleteFocusedOption, type FocusableOptionType, type ModalSubmitFieldType, ModalSubmitFields, type SubcommandOptionType, getFocusedOption, getGroup, getSubcommand };
