@@ -20,11 +20,6 @@ describe("ModalSubmitFields", function () {
             type: ComponentType.TextInput,
             customId: "text_input"
         })).toEqual(text);
-        expect(fields.get({
-            type: ComponentType.TextInput,
-            customId: "missing",
-            required: false
-        })).toEqual(null);
     });
 
     it("should default require to true and throw if not found", function () {
@@ -33,6 +28,11 @@ describe("ModalSubmitFields", function () {
             type: ComponentType.TextInput,
             customId: "missing"
         })).toThrowError("Unable to find required field: missing");
+        expect(fields.get({
+            type: ComponentType.TextInput,
+            customId: "missing",
+            required: false
+        })).toEqual(null);
     });
 
     it("should throw if field type does not match", function () {
