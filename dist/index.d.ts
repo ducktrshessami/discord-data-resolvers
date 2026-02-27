@@ -47,8 +47,8 @@ interface BaseGetFieldQuery<FieldType extends ModalSubmitFieldType> {
 declare class ModalSubmitFields {
     private readonly _fields;
     constructor(components: APIModalSubmissionComponent[]);
-    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & RequiredOption<true>): ExtractedField<FieldType>;
-    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & Partial<RequiredOption>): ExtractedField<FieldType> | null;
+    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & RequiredOption<false>): ExtractedField<FieldType> | null;
+    get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & Partial<RequiredOption>): ExtractedField<FieldType>;
 }
 
 export { ApplicationCommandOptions, type AutocompleteFocusedOption, type FocusableOptionType, type ModalSubmitFieldType, ModalSubmitFields, type SubcommandOptionType, getFocusedOption, getGroup, getSubcommand };
