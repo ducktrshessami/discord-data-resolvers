@@ -26,10 +26,10 @@ const fields = new ModalSubmitFields(interaction.data.components);
 const foo = fields.get({
     type: ComponentType.TextInput,
     customId: "foo"
-}); // APIModalSubmitTextInputComponent | null
+}); // APIModalSubmitTextInputComponent
 const bar = fields.get({
     type: ComponentType.StringSelect,
     customId: "bar",
-    required: true
-}); // APIModalSubmitStringSelectComponent
+    required: false
+}); // APIModalSubmitStringSelectComponent | null
 ```
