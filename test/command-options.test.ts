@@ -73,15 +73,36 @@ describe("ApplicationCommandOptions", function () {
 });
 
 describe("util fn", function () {
-    it("getSubcommand", function () {
-        expect(lib.getSubcommand(data)).toEqual(subcommand.name);
+    describe("getSubcommand", function () {
+        it("should resolve subcommand", function () {
+            expect(lib.getSubcommand(data)).toEqual(subcommand.name);
+        });
+
+        it("should throw if required and not found", function () {
+            expect(() => lib.getSubcommand([], true)).toThrowError("Unable to find subcommand");
+            expect(lib.getSubcommand([])).toEqual(null);
+        });
     });
 
-    it("getGroup", function () {
-        expect(lib.getGroup(data)).toEqual(group.name);
+    describe("getGroup", function () {
+        it("should resolve group", function () {
+            expect(lib.getGroup(data)).toEqual(group.name);
+        });
+
+        it("should throw if required and not found", function () {
+            expect(() => lib.getGroup([], true)).toThrowError("Unable to find group");
+            expect(lib.getGroup([])).toEqual(null);
+        });
     });
 
-    it("getFocusedOption", function () {
-        expect(lib.getFocusedOption(data)).toEqual(focused);
+    describe("getFocusedOption", function () {
+        it("resolve focused option", function () {
+            expect(lib.getFocusedOption(data)).toEqual(focused);
+        });
+
+        it("should default required to true and throw if not found", function () {
+            expect(() => lib.getFocusedOption([])).toThrowError("Unabled to find focused option");
+            expect(lib.getFocusedOption([], false)).toEqual(null);
+        });
     });
 });
