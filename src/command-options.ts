@@ -96,12 +96,12 @@ function findOption(options: APIApplicationCommandInteractionDataOption[] | unde
     return null;
 }
 
-export function getSubcommand(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommand>[] | undefined): string | null {
+export function getSubcommand(options: APIApplicationCommandInteractionDataOption[] | undefined): string | null {
     const subcommand = findOption(options, option => option.type === ApplicationCommandOptionType.Subcommand);
     return subcommand?.name ?? null;
 }
 
-export function getGroup(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommand>[] | undefined): string | null {
+export function getGroup(options: APIApplicationCommandInteractionDataOption[] | undefined): string | null {
     const group = findOption(options, option => option.type === ApplicationCommandOptionType.SubcommandGroup);
     return group?.name ?? null;
 }
