@@ -122,21 +122,21 @@ function findOption(
 }
 
 export function getSubcommand(options: APIApplicationCommandInteractionDataOption[] | undefined, required: true): string;
-export function getSubcommand(options: APIApplicationCommandInteractionDataOption[] | undefined, required?: false): string | null;
+export function getSubcommand(options: APIApplicationCommandInteractionDataOption[] | undefined, required?: boolean): string | null;
 export function getSubcommand(options: APIApplicationCommandInteractionDataOption[] | undefined, required: boolean = false): string | null {
     const subcommand = findOption(options, option => option.type === ApplicationCommandOptionType.Subcommand, required ? "Unable to find subcommand" : undefined);
     return subcommand?.name ?? null;
 }
 
 export function getGroup(options: APIApplicationCommandInteractionDataOption[] | undefined, required: true): string;
-export function getGroup(options: APIApplicationCommandInteractionDataOption[] | undefined, required?: false): string | null;
+export function getGroup(options: APIApplicationCommandInteractionDataOption[] | undefined, required?: boolean): string | null;
 export function getGroup(options: APIApplicationCommandInteractionDataOption[] | undefined, required: boolean = false): string | null {
     const group = findOption(options, option => option.type === ApplicationCommandOptionType.SubcommandGroup, required ? "Unable to find group" : undefined);
     return group?.name ?? null;
 }
 
 export function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required: false): AutocompleteFocusedOption | null;
-export function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required?: true): AutocompleteFocusedOption;
+export function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required?: boolean): AutocompleteFocusedOption;
 export function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required: boolean = true): AutocompleteFocusedOption | null {
     return findOption(options, isFocusedOption, required ? "Unabled to find focused option" : undefined);
 }
