@@ -32,9 +32,12 @@ declare class ApplicationCommandOptions<CommandInteractionType extends Applicati
     get group(): string | null;
     getFocused(): AutocompleteFocusedOption;
 }
-declare function getSubcommand(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommand>[] | undefined): string | null;
-declare function getGroup(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommand>[] | undefined): string | null;
-declare function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined): AutocompleteFocusedOption;
+declare function getSubcommand(options: APIApplicationCommandInteractionDataOption[] | undefined, required: true): string;
+declare function getSubcommand(options: APIApplicationCommandInteractionDataOption[] | undefined, required?: false): string | null;
+declare function getGroup(options: APIApplicationCommandInteractionDataOption[] | undefined, required: true): string;
+declare function getGroup(options: APIApplicationCommandInteractionDataOption[] | undefined, required?: false): string | null;
+declare function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required: false): AutocompleteFocusedOption | null;
+declare function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required?: true): AutocompleteFocusedOption;
 
 type ModalSubmitFieldType = ModalSubmitComponent["type"];
 type ExtractedField<FieldType extends ModalSubmitFieldType> = Extract<ModalSubmitComponent, {
