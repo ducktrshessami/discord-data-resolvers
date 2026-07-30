@@ -1,6 +1,6 @@
 import { APIModalSubmissionComponent, APIModalSubmitTextInputComponent, ComponentType, ModalSubmitLabelComponent } from "discord-api-types/v10";
 import { describe, expect, it } from "vitest";
-import * as lib from "../dist/index";
+import * as lib from "../";
 
 const text: APIModalSubmitTextInputComponent = {
     value: "Foobar",
