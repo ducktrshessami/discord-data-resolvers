@@ -6,4 +6,5 @@ class CustomError extends Error {
 }
 
 export class ApplicationCommandOptionResolutionError extends CustomError { }
+export class ComponentResolutionError extends CustomError { }
 export class ModalFieldResolutionError extends CustomError { }
