@@ -27,7 +27,7 @@ describe("ModalSubmitFields", function () {
         expect(() => fields.get({
             type: ComponentType.TextInput,
             customId: "missing"
-        })).toThrowError("Unable to find required field: missing");
+        })).toThrow("Unable to find required field: missing");
         expect(fields.get({
             type: ComponentType.TextInput,
             customId: "missing",
@@ -40,6 +40,6 @@ describe("ModalSubmitFields", function () {
         expect(() => fields.get({
             type: ComponentType.RadioGroup,
             customId: "text_input"
-        })).toThrowError("Expected field type RadioGroup. Received: TextInput");
+        })).toThrow("Expected field type RadioGroup. Received: TextInput");
     });
 });

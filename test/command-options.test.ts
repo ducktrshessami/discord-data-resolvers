@@ -49,7 +49,7 @@ describe("ApplicationCommandOptions", function () {
             type: ApplicationCommandOptionType.Boolean,
             name: "missing",
             required: true
-        })).toThrowError("Unable to find required option: missing");
+        })).toThrow("Unable to find required option: missing");
     });
 
     it("should throw if option type does not match", function () {
@@ -57,7 +57,7 @@ describe("ApplicationCommandOptions", function () {
         expect(() => options.get({
             type: ApplicationCommandOptionType.String,
             name: "bool"
-        })).toThrowError("Expected option type String. Received: Boolean");
+        })).toThrow("Expected option type String. Received: Boolean");
     });
 
     it("should resolve subcommand and subcommand group", function () {
@@ -79,7 +79,7 @@ describe("util fn", function () {
         });
 
         it("should throw if required and not found", function () {
-            expect(() => lib.getSubcommand([], true)).toThrowError("Unable to find subcommand");
+            expect(() => lib.getSubcommand([], true)).toThrow("Unable to find subcommand");
             expect(lib.getSubcommand([])).toEqual(null);
         });
     });
@@ -90,7 +90,7 @@ describe("util fn", function () {
         });
 
         it("should throw if required and not found", function () {
-            expect(() => lib.getGroup([], true)).toThrowError("Unable to find group");
+            expect(() => lib.getGroup([], true)).toThrow("Unable to find group");
             expect(lib.getGroup([])).toEqual(null);
         });
     });
@@ -101,7 +101,7 @@ describe("util fn", function () {
         });
 
         it("should default required to true and throw if not found", function () {
-            expect(() => lib.getFocusedOption([])).toThrowError("Unabled to find focused option");
+            expect(() => lib.getFocusedOption([])).toThrow("Unabled to find focused option");
             expect(lib.getFocusedOption([], false)).toEqual(null);
         });
     });
