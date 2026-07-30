@@ -1,4 +1,4 @@
-import { InteractionType, APIApplicationCommandInteractionDataOption, ApplicationCommandOptionType, ModalSubmitComponent, APIModalSubmissionComponent } from 'discord-api-types/v10';
+import { InteractionType, APIApplicationCommandInteractionDataOption, ApplicationCommandOptionType, APIMessageComponent, ModalSubmitComponent, APIModalSubmissionComponent } from 'discord-api-types/v10';
 
 interface RequiredOption<Required extends boolean = boolean> {
     required: Required;
@@ -39,6 +39,17 @@ declare function getGroup(options: APIApplicationCommandInteractionDataOption[] 
 declare function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required?: true): AutocompleteFocusedOption;
 declare function getFocusedOption(options: APIApplicationCommandInteractionDataOption<InteractionType.ApplicationCommandAutocomplete>[] | undefined, required: boolean): AutocompleteFocusedOption | null;
 
+interface BaseFindComponentByIDQuery<Type extends APIMessageComponent["type"]> {
+    id: number;
+    type: Type;
+}
+declare function findComponentById<Type extends APIMessageComponent["type"]>(components: APIMessageComponent[] | undefined, query: BaseFindComponentByIDQuery<Type> & RequiredOption<false>): Extract<APIMessageComponent, {
+    type: Type;
+}> | null;
+declare function findComponentById<Type extends APIMessageComponent["type"]>(components: APIMessageComponent[] | undefined, query: BaseFindComponentByIDQuery<Type> & Partial<RequiredOption>): Extract<APIMessageComponent, {
+    type: Type;
+}>;
+
 type ModalSubmitFieldType = ModalSubmitComponent["type"];
 type ExtractedField<FieldType extends ModalSubmitFieldType> = Extract<ModalSubmitComponent, {
     type: FieldType;
@@ -54,4 +65,4 @@ declare class ModalSubmitFields {
     get<FieldType extends ModalSubmitFieldType>(query: BaseGetFieldQuery<FieldType> & RequiredOption): ExtractedField<FieldType> | null;
 }
 
-export { ApplicationCommandOptions, type AutocompleteFocusedOption, type FocusableOptionType, type ModalSubmitFieldType, ModalSubmitFields, type SubcommandOptionType, getFocusedOption, getGroup, getSubcommand };
+export { ApplicationCommandOptions, type AutocompleteFocusedOption, type FocusableOptionType, type ModalSubmitFieldType, ModalSubmitFields, type SubcommandOptionType, findComponentById, getFocusedOption, getGroup, getSubcommand };
