@@ -2,27 +2,29 @@
     "name": "discord-data-resolvers",
     "version": "0.4.0",
     "description": "Standalone type-safe interaction data parsing utilities",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/index.cjs",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.cts",
     "repository": "git@github.com:ducktrshessami/discord-data-resolvers.git",
     "author": "ducktrshessami",
     "license": "MIT",
     "scripts": {
-        "build": "tsup",
+        "prebuild": "tsc --noEmit",
+        "build": "tsdown",
         "pretest": "yarn build && tsc --project tsconfig.test.json",
         "test": "vitest"
     },
     "exports": {
-        "types": "./dist/index.d.ts",
-        "require": "./dist/index.js",
+        "types": "./dist/index.d.cts",
+        "require": "./dist/index.cjs",
         "import": "./dist/index.mjs"
     },
     "dependencies": {
-        "discord-api-types": "^0.38.40"
+        "discord-api-types": "^0.38.52"
     },
     "devDependencies": {
-        "tsup": "^8.5.1",
-        "typescript": "^5.9.3",
-        "vitest": "^4.0.18"
+        "tsdown": "^0.22.14",
+        "typescript": "^7.0.2",
+        "vitest": "^4.1.10"
     }
 }
